@@ -1,0 +1,3 @@
+# <a name="completed-module-create-a-ruby-on-rails-web-app"></a>Завершенный модуль: создание Ruby on Салазокs веб-приложение
+
+Версия проекта в этом каталоге отражает выполнение учебника с помощью [создания веб-приложения Ruby on салазокs](https://docs.microsoft.com/graph/training/ruby-tutorial?tutorial-step=1). Если вы используете эту версию проекта, вам необходимо выполнить все остальные руководства, начиная с [регистрации приложения на портале](https://docs.microsoft.com/graph/training/ruby-tutorial?tutorial-step=2).
