@@ -4,7 +4,7 @@
 
 ## <a name="lab---build-ruby-on-rails-apps-with-microsoft-graph"></a>Лаборатория: построение Ruby on салазок для приложений с помощью Microsoft Graph
 
-В этой лабораторной работе вы создадите веб-приложение Ruby on Салазокs, используя конечную точку проверки подлинности Azure AD v2 для доступа к данным в Office 365 с помощью Microsoft Graph.
+В этой лабораторной работе вы создадите веб-приложение Ruby on Салазокs, используя конечную точку проверки подлинности платформы удостоверений Майкрософт для доступа к данным в Office 365 с помощью Microsoft Graph.
 
 - [Руководство по Microsoft Graph с транскрипцией](https://docs.microsoft.com/graph/training/ruby-tutorial)
 

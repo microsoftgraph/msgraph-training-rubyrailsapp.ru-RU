@@ -41,7 +41,7 @@ module OmniAuth
 
       DEFAULT_SCOPE = 'openid email profile User.Read'.freeze
 
-      # Configure the Azure v2 endpoints
+      # Configure the Microsoft identity platform endpoints
       option  :client_options,
               site:          'https://login.microsoftonline.com',
               authorize_url: '/common/oauth2/v2.0/authorize',
@@ -86,7 +86,7 @@ end
 
 Уделите время, чтобы узнать, что делает этот код.
 
-- Настройка `client_options` конечных точек Azure v2.
+- Настройка конечных `client_options` точек платформы удостоверений (Майкрософт).
 - Он указывает, что `scope` параметр должен быть отправлен на этапе авторизации.
 - Он сопоставляет `id` свойство пользователя с уникальным идентификатором пользователя.
 - Он использует маркер доступа для извлечения профиля пользователя из Microsoft Graph, чтобы заполнить `raw_info` хэш.
