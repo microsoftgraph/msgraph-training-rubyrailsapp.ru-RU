@@ -18,19 +18,21 @@ rails new graph-tutorial
 rails server
 ```
 
-Откройте браузер и перейдите по адресу `http://localhost:3000`. Если все работает, вы увидите "Яи! Вы находитесь на салазках! " Сообщение. Если вы не видите это сообщение, ознакомьтесь с [руководством по началу работы](http://guides.rubyonrails.org/)с салазками.
+Откройте браузер и перейдите по адресу `http://localhost:3000`. Если все работает, вы увидите "Яи! Вы находитесь на салазках! " Сообщение. Если вы не видите это сообщение, ознакомьтесь с [руководством по началу работы с салазками](http://guides.rubyonrails.org/).
 
 Прежде чем переходить, установите несколько дополнительных драгоценных камней, которые будут использоваться позже:
 
 - [omniauth — OAuth2](https://github.com/omniauth/omniauth-oauth2) для обработки входных потоков и маркеров OAuth.
+- [omniauth — rails_csrf_protection](https://github.com/cookpad/omniauth-rails_csrf_protection) для добавления защиты Ксрф в omniauth.
 - [хттпарти](https://github.com/jnunemaker/httparty) для совершения вызовов в Microsoft Graph.
 - [нокогири](https://github.com/sparklemotion/nokogiri) , чтобы обрабатывать тексты электронной почты в формате HTML.
-- [активерекорд — сессион_сторе](https://github.com/rails/activerecord-session_store) для хранения сеансов в базе данных.
+- [активерекорд — session_store](https://github.com/rails/activerecord-session_store) для хранения сеансов в базе данных.
 
 Выполните следующие команды в командной панели CLI.
 
 ```Shell
 bundle add omniauth-oauth2
+bundle add omniauth-rails_csrf_protection
 bundle add httparty
 bundle add nokogiri
 bundle add activerecord-session_store
@@ -162,7 +164,7 @@ Rails.application.config.session_store :active_record_store, key: '_graph_app_se
 </html>
 ```
 
-В этом коде [](http://getbootstrap.com/) добавляется начальная загрузка для простых стилей и [Шрифт Awesome](https://fontawesome.com/) для некоторых простых значков. Он также определяет глобальную структуру с помощью панели навигации.
+В этом коде добавляется [Начальная](http://getbootstrap.com/) загрузка для простых стилей и [Шрифт Awesome](https://fontawesome.com/) для некоторых простых значков. Он также определяет глобальную структуру с помощью панели навигации.
 
 Теперь откройте `./app/assets/stylesheets/application.css` и добавьте следующий элемент в конец файла.
 
