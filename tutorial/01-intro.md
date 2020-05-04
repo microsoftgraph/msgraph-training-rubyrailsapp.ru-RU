@@ -8,7 +8,7 @@
 > - Скачайте [Краткое руководство Ruby](https://developer.microsoft.com/graph/quick-start?platform=option-ruby) , чтобы получить рабочий код в минутах.
 > - Скачайте или скопируйте [репозиторий GitHub](https://github.com/microsoftgraph/msgraph-training-rubyrailsapp).
 
-## <a name="prerequisites"></a>Необходимые компоненты
+## <a name="prerequisites"></a>Предварительные требования
 
 Прежде чем приступить к работе с этим руководством, на компьютере для разработки должен быть установлен [Ruby](https://www.ruby-lang.org/en/downloads/) . Если вы не используете транскрипцию, перейдите к предыдущей ссылке для получения вариантов загрузки.
 
