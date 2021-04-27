@@ -2,31 +2,31 @@
 
 В этом упражнении вы будете использовать [Ruby on Rails](https://rubyonrails.org/) для создания веб-приложения.
 
-1. Если вы еще не установили Rails, вы можете установить его из интерфейса командной строки (CLI) с помощью следующей команды.
+1. Если у вас еще нет установленных рельсов, вы можете установить его из интерфейса командной строки (CLI) со следующей командной командой.
 
     ```Shell
-    gem install rails -v 6.0.3.4
+    gem install rails -v 6.1.3.1
     ```
 
-1. Откройте CLI, перейдите в каталог, в котором у вас есть права на создание файлов, и запустите следующую команду, чтобы создать новое приложение Rails.
+1. Откройте CLI, перейдите в каталог, в котором у вас есть права на создание файлов, и запустите следующую команду для создания нового приложения Rails.
 
     ```Shell
     rails new graph-tutorial
     ```
 
-1. Перейдите в этот новый каталог и введите следующую команду, чтобы запустить локальный веб-сервер.
+1. Перейдите к новому каталогу и введите следующую команду, чтобы запустить локальный веб-сервер.
 
     ```Shell
     rails server
     ```
 
-1. Откройте браузер и перейдите по адресу `http://localhost:3000`. Если все работает, вы увидите "Yay! You're on Rails!" Сообщение. Если вы не видите это сообщение, проверьте руководство по [началу работы Rails.](http://guides.rubyonrails.org/)
+1. Откройте браузер и перейдите по адресу `http://localhost:3000`. Если все работает, вы увидите "Yay! Вы на рельсах! Сообщение. Если вы не видите это сообщение, проверьте руководство по началу [работы Rails.](http://guides.rubyonrails.org/)
 
-## <a name="install-gems"></a>Установка самосхем
+## <a name="install-gems"></a>Установка драгоценных камней
 
-Прежде чем двигаться дальше, установите некоторые дополнительные самосхемы, которые вы будете использовать позже:
+Прежде чем двигаться дальше, установите некоторые дополнительные драгоценные камни, которые вы будете использовать позже:
 
-- [omniauth-oauth2](https://github.com/omniauth/omniauth-oauth2) для обработки потоков входов и маркеров OAuth.
+- [omniauth-oauth2 для](https://github.com/omniauth/omniauth-oauth2) обработки потоков маркеров входных и OAuth.
 - [omniauth-rails_csrf_protection](https://github.com/cookpad/omniauth-rails_csrf_protection) для добавления защиты CSRF в OmniAuth.
 - [httparty](https://github.com/jnunemaker/httparty) для звонков в Microsoft Graph.
 - [activerecord-session_store](https://github.com/rails/activerecord-session_store) для хранения сеансов в базе данных.
@@ -48,7 +48,7 @@
     rake db:migrate
     ```
 
-1. Создайте файл, который будет вызван в `session_store.rb` **каталоге ./config/initializers,** и добавьте следующий код.
+1. Создайте новый файл, называемый `session_store.rb` **в каталоге ./config/initializers,** и добавьте следующий код.
 
     :::code language="ruby" source="../demo/graph-tutorial/config/initializers/session_store.rb" id="SessionStoreSnippet":::
 
@@ -56,23 +56,23 @@
 
 В этом разделе вы создадим базовый пользовательский интерфейс для приложения.
 
-1. Откройте **./app/views/layouts/application.html.erb** и замените его содержимое на следующее.
+1. Откройте **./app/views/layouts/application.html.erb** и замените его содержимое следующим.
 
     :::code language="html" source="../demo/graph-tutorial/app/views/layouts/application.html.erb" id="LayoutSnippet":::
 
-    Этот код добавляет [Bootstrap](http://getbootstrap.com/) для простого стиля и [Fabric Core](https://developer.microsoft.com/fluentui#/get-started#fabric-core) для некоторых простых значков. Он также определяет глобальный макет с панели nav.
+    Этот код добавляет [Bootstrap](http://getbootstrap.com/) для простого стиля и [Fabric Core](https://developer.microsoft.com/fluentui#/get-started#fabric-core) для некоторых простых значков. Он также определяет глобальную макет с панели nav.
 
-1. Откройте **файл ./app/assets/stylesheets/application.css** и добавьте в конец файла следующее:
+1. Откройте **таблицы ./app/assets/stylesheets/application.css** и добавьте следующее в конец файла.
 
     :::code language="css" source="../demo/graph-tutorial/app/assets/stylesheets/application.css" id="CssSnippet":::
 
-1. Создание контроллера домашней страницы с помощью следующей команды.
+1. Создание контроллера домашней страницы со следующей командой.
 
     ```Shell
     rails generate controller Home index
     ```
 
-1. Настройте действие на контроллере в качестве `index` страницы по умолчанию для `Home` приложения. Откройте **./config/routes.rb** и замените его содержимое на следующее:
+1. Настройте `index` действие на контроллере `Home` как страницу по умолчанию для приложения. Откройте **./config/routes.rb** и замените его содержимое следующим
 
     ```ruby
     Rails.application.routes.draw do
@@ -84,12 +84,12 @@
     end
     ```
 
-1. Откройте **./app/view/home/index.html.erb** и замените его содержимое на следующее.
+1. Откройте **./app/view/home/index.html.erb** и замените его содержимое следующим.
 
     :::code language="html" source="../demo/graph-tutorial/app/views/home/index.html.erb" id="HomeSnippet":::
 
-1. Добавьте PNG-файл с **именемno-profile-photo.png** в **каталог ./app/assets/images.**
+1. Добавьте PNG-файл **с именемno-profile-photo.png** в **каталоге ./app/assets/images.**
 
-1. Сохраните все изменения и перезапустите сервер. Теперь приложение должно выглядеть совершенно иначе.
+1. Сохраните все изменения и перезапустите сервер. Теперь приложение должно выглядеть совсем по-другому.
 
-    ![Снимок экрана с измененной домашней страницей](./images/create-app-01.png)
+    ![Снимок экрана: обновленная домашняя страница](./images/create-app-01.png)

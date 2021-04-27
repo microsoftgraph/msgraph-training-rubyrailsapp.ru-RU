@@ -1,16 +1,16 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-В этом упражнении вы включаете Microsoft Graph в приложение. Для этого приложения вы будете использовать httparty-самосхему для вызова Microsoft Graph. [](https://github.com/jnunemaker/httparty)
+В этом упражнении вы будете включать Graph Microsoft в приложение. Для этого приложения вы будете использовать [драгоценный камень httparty](https://github.com/jnunemaker/httparty) для звонков в Microsoft Graph.
 
 ## <a name="create-a-graph-helper"></a>Создание помощника Graph
 
-1. Создайте помощник для управления всеми вызовами API. Чтобы создать помощник, запустите следующую команду в CLI.
+1. Создайте помощника для управления всеми вызовами API. Запустите следующую команду в CLI для создания помощника.
 
     ```Shell
     rails generate helper Graph
     ```
 
-1. Откройте **./app/helpers/graph_helper.rb** и замените содержимое на следующее.
+1. Откройте **./app/helpers/graph_helper.rb** и замените содержимое следующим.
 
     ```ruby
     require 'httparty'
@@ -44,17 +44,17 @@
     end
     ```
 
-Просмотрите, что делает этот код. Он делает простой запрос GET или POST с помощью самосхемы `httparty` в запрашиваемую конечную точку. Он отправляет маркер доступа в заголке и включает все переданные `Authorization` параметры запроса.
+Найми минутку, чтобы просмотреть, что делает этот код. Он делает простой запрос GET или POST через драгоценный камень `httparty` в запрашиваемую конечную точку. Он отправляет маркер доступа в загонах и включает все параметры запроса, которые `Authorization` передаются.
 
-Например, чтобы использовать метод для `make_api_call` получения `https://graph.microsoft.com/v1.0/me?$select=displayName` get, можно вызвать его так:
+Например, чтобы использовать метод get to, можно вызвать `make_api_call` `https://graph.microsoft.com/v1.0/me?$select=displayName` его так:
 
 ```ruby
-make_api_call 'GET', '/v1.0/me', access_token, { '$select': 'displayName' }
+make_api_call 'GET', '/v1.0/me', access_token, {}, { '$select': 'displayName' }
 ```
 
-Вы сможете реализации дополнительных функций Microsoft Graph в приложении позже.
+Это будет реализовано позже по мере реализации дополнительных функций Microsoft Graph в приложении.
 
-## <a name="get-calendar-events-from-outlook"></a>Получить события календаря из Outlook
+## <a name="get-calendar-events-from-outlook"></a>Получение событий календаря из Outlook
 
 1. В CLI запустите следующую команду, чтобы добавить новый контроллер.
 
@@ -62,31 +62,31 @@ make_api_call 'GET', '/v1.0/me', access_token, { '$select': 'displayName' }
     rails generate controller Calendar index new
     ```
 
-1. Добавьте новый маршрут в **./config/routes.rb.**
+1. Добавьте новый маршрут **в ./config/routes.rb**.
 
     ```ruby
     get 'calendar', :to => 'calendar#index'
     ```
 
-1. Добавьте новый метод во справку Graph, чтобы [получить представление календаря.](https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0) Откройте **./app/helpers/graph_helper.rb** и добавьте в модуль следующий `GraphHelper` метод.
+1. Добавьте новый метод в помощник Graph, чтобы [получить представление календаря.](https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0) Откройте **./app/helpers/graph_helper.rb** и добавьте следующий метод в `GraphHelper` модуль.
 
     :::code language="ruby" source="../demo/graph-tutorial/app/helpers/graph_helper.rb" id="GetCalendarSnippet":::
 
-    Подумайте, что делает этот код.
+    Давайте посмотрим, что делает этот код.
 
-    - Будет вызван URL-адрес `/v1.0/me/calendarview` .
-        - Заголок приводит к корректировке времени начала и окончания результатов в часовом `Prefer: outlook.timezone` поясе пользователя.
-        - Параметры `startDateTime` и начало и конец `endDateTime` представления.
-        - Параметр `$select` ограничивает поля, возвращаемые для каждого события, только теми полями, которые будут фактически использовать представление.
+    - Вызывается URL-адрес `/v1.0/me/calendarview`.
+        - Заготвка приводит к корректировке времени начала и окончания результатов в часовом поясе `Prefer: outlook.timezone` пользователя.
+        - Параметры `startDateTime` `endDateTime` и параметров заданы начало и конец представления.
+        - Параметр `$select` ограничивает поля, возвращаемые для каждого события, только теми, которые будут фактически использовать представление.
         - Параметр `$orderby` сортировать результаты по времени начала.
-        - Этот `$top` параметр ограничивает результаты до 50 событий.
-    - Для успешного отклика он возвращает массив элементов, содержащихся в `value` ключе.
+        - Параметр ограничивает результаты до `$top` 50 событий.
+    - Для успешного ответа возвращается массив элементов, содержащихся в `value` ключе.
 
-1. Добавьте во помощник Graph новый метод для получения идентификатора часового пояса [IANA](https://www.iana.org/time-zones) на основе имени часового пояса Windows. Это необходимо, так как Microsoft Graph может возвращать часовые пояса в качестве имен часовых поясов Windows, а для класса Ruby **DateTime** требуются идентификаторы часовых поясов IANA.
+1. Добавьте новый метод в помощник Graph, чтобы найти идентификатор часового пояса [IANA](https://www.iana.org/time-zones) на основе имени Windows часового пояса. Это необходимо, так как microsoft Graph может Windows часовых поясов в качестве имен часовых поясов, а для класса Ruby **DateTime** требуются идентификаторы часового пояса IANA.
 
     :::code language="ruby" source="../demo/graph-tutorial/app/helpers/graph_helper.rb" id="ZoneMappingSnippet":::
 
-1. Откройте **./app/controllers/calendar_controller.rb** и замените все его содержимое на следующее.
+1. Откройте **./app/controllers/calendar_controller.rb** и замените все содержимое на следующее.
 
     ```ruby
     # Calendar controller
@@ -114,20 +114,20 @@ make_api_call 'GET', '/v1.0/me', access_token, { '$select': 'displayName' }
     end
     ```
 
-1. Перезапустите сервер. Войдите и щелкните **ссылку "Календарь"** на панели nav. Если все работает, в календаре пользователя должен быть дамп событий JSON.
+1. Перезапустите сервер. Войдите и щелкните **ссылку Календарь** в панели nav. Если все работает надлежащим образом, в календаре пользователя должен появиться дамп событий в формате JSON.
 
 ## <a name="display-the-results"></a>Отображение результатов
 
-Теперь вы можете добавить HTML для более удобного отображения результатов.
+Теперь вы можете добавить HTML для отображения результатов более удобным для пользователя способом.
 
-1. Откройте **./app/views/calendar/index.html.erb** и замените его содержимое на следующее.
+1. Откройте **./app/views/calendar/index.html.erb** и замените его содержимое следующим.
 
     :::code language="html" source="../demo/graph-tutorial/app/views/calendar/index.html.erb" id="CalendarSnippet":::
 
-    При этом будет цикл через коллекцию событий и добавлена строка таблицы для каждого из них.
+    Это позволяет повторять коллекцию событий и добавить для каждого из них строку таблицы.
 
-1. Удалите `render json: @events` строку из действия `index` в **./app/controllers/calendar_controller.rb**.
+1. Удалите строку из действия `render json: @events` `index` в **./app/controllers/calendar_controller.rb**.
 
-1. Обновите страницу, и приложение должно отрисовки таблицы событий.
+1. Обновите страницу, и приложение должно теперь отрисовка таблицы событий.
 
     ![Снимок экрана с таблицей событий](./images/add-msgraph-01.png)
